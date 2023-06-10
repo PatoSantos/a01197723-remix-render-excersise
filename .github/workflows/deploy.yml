@@ -53,7 +53,7 @@ jobs:
           node-version: 18
     
       - name: 📥 Install deps
-        script: |
+        run: |
         npm install
         npx prisma generate
 
