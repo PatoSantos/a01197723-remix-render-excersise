@@ -38,6 +38,9 @@ jobs:
   typecheck:
     name: ʦ TypeScript
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
     steps:
       - name: ⬇ Checkout repo
         uses: actions/checkout@v3
@@ -50,7 +53,9 @@ jobs:
           node-version: 18
     
       - name: 📥 Install deps
-        run: npm install
+        script: |
+        npm install
+        npx prisma generate
 
       - name: 🔎 Type check
         run: npm run typecheck --if-present
