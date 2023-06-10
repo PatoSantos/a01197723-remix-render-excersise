@@ -53,9 +53,10 @@ jobs:
           node-version: 18
     
       - name: 📥 Install deps
-        run: |
-        npm install
-        npx prisma generate
+        run: npm install
+
+      - name: 🛠 Setup Database
+        run: npx prisma generate
 
       - name: 🔎 Type check
         run: npm run typecheck --if-present
